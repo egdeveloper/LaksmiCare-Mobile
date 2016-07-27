@@ -10,44 +10,72 @@
 
 <body>
 	<!-- Start of first page: #one -->
-	<div class="ui-page" id="one">
+	<div class="ui-page" id="p_1">
 		<div class="ui-header">
 			<h1>Heart rate monitor</h1>
-		</div><!-- /header -->
+		</div>
 		<div class="ui-content">
 			<div id="login-form">
-				<label for="login-text">Login: </label>
-				<input name="login-text" id="login">
-				<br/>
-				<label for="password-text">Password: </label>
-				<input name="password-text" id="password">
-				<br/>
-				<button onclick="addUser();">Log in</button>
+				<form>
+					<label for="login-auth-input">Login: </label>
+					<input name="login-text" id="login-auth-input">
+					<br/>
+					<label for="password-auth-input">Password: </label>
+					<input name="password-text" id="password-auth-input">
+					<br/>
+					<button onclick="onclick_authUser();" type="button">Log in</button>
+				</form>
+				<a href="#p_2">Register</a>
+				<button onclick="genGUID();">gen guid</button>
 			</div>
-		</div><!-- /content -->
-	</div><!-- /page one -->
+		</div>
+	</div>
 
-
-	<!-- Start of second page: #two -->
-	<div class="ui-page" id="two">
+	<div class="ui-page" id="p_2">
 		<div class="ui-header">
-			<h1>Two</h1>
-		</div><!-- /header -->
+			<h1>Register</h1>
+		</div>
 
 		<div class="ui-content">
-			
-		</div><!-- /content -->
-	</div><!-- /page two -->
+			<div id="register-form">
+				<form>
+					<label for="name-input">Full name: </label>
+					<input name="name-text" id="name-input">
+					<br/>
+					<label for="email-input">Email: </label>
+					<input name="email-text" id="email-input">
+					<br/>
+					<label for="login-input">Login: </label>
+					<input name="login-text" id="login-input">
+					<br/>
+					<label for="password-input">Password: </label>
+					<input name="password-text" id="password-input">
+					<br/>
+					<label for="password-confirm-input">Confirm password: </label>
+					<input name="password-confirm-text" id="password-confirm-input">
+					<br/>
+					<button onclick="onclick_addUser();" type="button">Sign up</button>
+				</form>
+				<a href="#p_1">Back to log in page</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui-page" id="p_3">
+		<div class="ui-header">
+			<h1>Register</h1>
+		</div>
+
+		<div class="ui-content">
+
+		</div>
+	</div>
 
 	<script type="text/javascript" src="./lib/tau/mobile/js/tau.js"></script>
 	<script src="./js/main.js"></script>
 	<script src="lib/jquery.js"></script>
 	<script src="js/restapi.js"></script>
-	<script>
-		function addUser(){
-			console.log($("#login").val());
-			authUser($("#login").val(), $("#password").val());
-		} 
-	</script>
+	<script src="js/ui-controller.js"></script>
+	<script src="js/security.js"></script>
 </body>
 </html>
