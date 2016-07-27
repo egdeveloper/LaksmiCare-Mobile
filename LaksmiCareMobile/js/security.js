@@ -10,11 +10,3 @@ function generateGUID(){
     });
 }
 
-
-function getOrGenToken(){
-	var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-	var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-	var req = indexedDB.open(TOKENDB, 1);
-	
-}
-

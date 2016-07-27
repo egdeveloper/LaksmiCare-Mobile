@@ -2,8 +2,20 @@
 /*const HOST = "http://146.185.143.85:8080";*/
 //const HOST = "http://localhost:8080";
 const HOST = "http://192.168.0.156:8080";
+var tdb;
 
-var globalUser;
+//$(document).ready(function(){
+//	tdb = new Dexie('tokens');
+//	Dexie.exists('tokens').then(function(exists){
+//		if(!exists){
+//			tdb.version(1).stores({
+//				tokens: "name, guid"
+//			});
+//			console.log(tdb);
+//		}
+//	});
+//	tdb.open();
+//});
 
 function authUser(login, password, onSuccess, onFail){
 	console.log("=> authUser() started");
@@ -16,15 +28,16 @@ function authUser(login, password, onSuccess, onFail){
 	    	"Content-Type" : "application/json"
 	    },
 	    dataType: 'json',
-	    success : onSuccess
+	    success : function(data){
+	    	/*tdb.tokens.add({"name" : "def-token", "guid" : data.token});*/
+	    	onSuccess(data);
+	    }
 	}).fail(onFail);
 }
 
 function createUserAccount(user, onSuccess, onFail){
 	console.log("=> createUserAccount() started");
 	console.log("| User =" + user);
-	user.secTokens = [];
-	user.secTokens.push(generateGUID());
 	console.log("=> createUserAccount() started");
 	console.log("| User = " + user);
 	$.ajax({
@@ -34,7 +47,47 @@ function createUserAccount(user, onSuccess, onFail){
 			"Content-Type" : "application/json"
 		},
 		dataType: "json",
-		data: user,
+		data: JSON.stringify(user),
+		success: onSuccess
+	}).fail(onFail);
+}
+
+function updateUserData(user, onSuccess, onFail){
+	console.log("=> createUserAccount() started");
+	console.log("| User =" + user);
+	/*tdb.tokens.where('name').equals('def-token').each(function(token){
+		$.ajax({
+			url: HOST + "/user?token=" + token,
+			type: "PUT",
+			headers: {
+				"Content-Type" : "application/json"
+			},
+			dataType: "json",
+			data: JSON.stringify(user),
+			success: onSuccess
+		}).fail(onFail);
+		return;
+	});*/
+	$.ajax({
+		url: HOST + "/user",
+		type: "PUT",
+		headers: {
+			"Content-Type" : "application/json"
+		},
+		data: JSON.stringify(user),
+		success: onSuccess
+	}).fail(onFail);
+}
+
+function addConfident(user, confident, onSuccess, onFail){
+	$.ajax({
+		url: HOST + "/user/" + user.id + "/confident",
+		method: "POST",
+		headers: {
+			"Content-Type" : "application/json"
+		},
+		dataType: "json",
+		data: JSON.stringify(confident),
 		success: onSuccess
 	}).fail(onFail);
 }
@@ -43,6 +96,9 @@ function getConfident(user, onSuccess, onFail){
 	$.ajax({
 		url: HOST + "/user/" + user.id + "/confident-list",
 		method: "GET",
+		headers: {
+			"Content-Type" : "application/json"
+		},
 		dataType: "json",
 		success: onSuccess
 	}).fail(onFail);

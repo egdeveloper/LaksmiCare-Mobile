@@ -1,13 +1,20 @@
-function connectDB(db, stg, onSuccess, onError){
-	var request = indexedDB.open(db, 1);
-	request.onerror = function(err){
-		onError(err)
+function Database(name){
+	var self = this;
+	this.name = name;
+	this.db = new PouchDB(this.name);
+	this.insert = function(data, handler){
+		self.db.put(data, handler);
 	};
-	request.onsuccess = function(){
-		onSuccess(request.result);
-	}
-	request.onupgradeneeded = function(e){
-		e.currentTarget.result.createObjectStore(stg, { keyPath: "key" });
-		connectDB(f);
-	}
+	this.destroy = function(handler){
+		self.db.destroy(handler);
+	};
+	this.get = function(id, handler){
+		self.db.get(id, handler);
+	};
+	this.findAll = function(handler){
+		self.db.allDocs({
+			  include_docs: true,
+			  attachments: true
+			}, handler);
+	};
 }

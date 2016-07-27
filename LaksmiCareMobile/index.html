@@ -9,7 +9,10 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <script src="lib/jquery-2.0.0.min.js"></script>
     <script src="lib/jquery.mobile-1.4.5.min.js"></script>
-    <title>Tizen Web IDE - Template - Tizen - Tizen Web UI Framework - Multi Page</title>
+    <script src="lib/pouchdb-5.4.5.min.js"></script>
+    <script src="js/persistence.js"></script>
+    <script src="lib/dexie.js"></script>
+    <title>LaksmiCare Heart Rate Monitor</title>
 </head>
 
 <body class="container">
@@ -125,7 +128,7 @@
                         <button id="addConfident-button" onclick="onclickAddConfident();" type="button">Add confident</button>
                     </form>
                     <br/>
-                    <div class="confident-list">
+                    <div id="confident-list">
                     	
                     </div>
                 </div>
