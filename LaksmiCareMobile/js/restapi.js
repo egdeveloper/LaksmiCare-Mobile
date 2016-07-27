@@ -31,7 +31,7 @@ function authUser(login, password){
 	    }
 	});
 }
-
+    
 function getConfident(){
 	$.ajax({
 		url: HOST + "/user/" + user.id,
