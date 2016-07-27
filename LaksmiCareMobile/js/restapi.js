@@ -1,6 +1,9 @@
-var user;
-const HOST = "http://146.185.143.85:8080/user-service";
+
+/*const HOST = "http://146.185.143.85:8080";*/
 //const HOST = "http://localhost:8080";
+const HOST = "http://192.168.0.156:8080";
+
+var globalUser;
 
 function authUser(login, password, onSuccess, onFail){
 	console.log("=> authUser() started");
@@ -18,6 +21,10 @@ function authUser(login, password, onSuccess, onFail){
 }
 
 function createUserAccount(user, onSuccess, onFail){
+	console.log("=> createUserAccount() started");
+	console.log("| User =" + user);
+	user.secTokens = [];
+	user.secTokens.push(generateGUID());
 	console.log("=> createUserAccount() started");
 	console.log("| User = " + user);
 	$.ajax({

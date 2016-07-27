@@ -2,80 +2,147 @@
 <html>
 
 <head>
-	<meta name="viewport" content="width=device-width,user-scalable=no"/>
-	<link rel="stylesheet"  href="./lib/tau/mobile/theme/default/tau.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css"/>
-	<title>Tizen Web IDE - Template - Tizen - Tizen Web UI Framework - Multi Page</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <!-- 	<link rel="stylesheet"  href="./lib/tau/mobile/theme/default/tau.css"> -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <script src="lib/jquery-2.0.0.min.js"></script>
+    <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+    <title>Tizen Web IDE - Template - Tizen - Tizen Web UI Framework - Multi Page</title>
 </head>
 
-<body>
-	<!-- Start of first page: #one -->
-	<div class="ui-page" id="p_1">
-		<div class="ui-header">
-			<h1>Heart rate monitor</h1>
-		</div>
-		<div class="ui-content">
-			<div id="login-form">
-				<form>
-					<label for="login-auth-input">Login: </label>
-					<input name="login-text" id="login-auth-input">
-					<br/>
-					<label for="password-auth-input">Password: </label>
-					<input name="password-text" id="password-auth-input">
-					<br/>
-					<button onclick="onclick_authUser();" type="button">Log in</button>
-				</form>
-				<a href="#p_2">Register</a>
-				<button onclick="genGUID();">gen guid</button>
-			</div>
-		</div>
-	</div>
+<body class="container">
+	<a href="#p1" id="redp1" style="visibility: hidden;"></a>
+	<a href="#p2" id="redp2" style="visibility: hidden;"></a>
+	
+    <div data-role="page" data-title="Page 1" id="p1">
+        <div data-role="header" class="ui-header">
+            <h1>Heart rate monitor</h1>
+        </div>
+        <div data-role="content" class="ui-content">
+            <div id="login-form">
+                <form>
+                    <label for="login-auth-input">Login:</label>
+                    <input name="login-text" id="login-auth-input">
+                    <br/>
+                    <label for="password-auth-input">Password:</label>
+                    <input type="password" name="password-text" id="password-auth-input">
+                    <br/>
+                    <button onclick="onclick_authUser();" type="button">Log in</button>
+                </form>
+                <div align="right">
+                    <a href="#p2" class="ui-link" style="text-align: right;">Register</a>
+                </div>
+                <a href="#p3" id="redp3" style="visibility: hidden;"></a>
+            </div>
+        </div>
+    </div>
 
-	<div class="ui-page" id="p_2">
-		<div class="ui-header">
-			<h1>Register</h1>
-		</div>
+    <div data-role="page" data-title="Page 2" data-url="p2" class="ui-page" id="p2">
+        <div data-role="header" class="ui-header">
+            <h1>Register</h1>
+        </div>
 
-		<div class="ui-content">
-			<div id="register-form">
-				<form>
-					<label for="name-input">Full name: </label>
-					<input name="name-text" id="name-input">
-					<br/>
-					<label for="email-input">Email: </label>
-					<input name="email-text" id="email-input">
-					<br/>
-					<label for="login-input">Login: </label>
-					<input name="login-text" id="login-input">
-					<br/>
-					<label for="password-input">Password: </label>
-					<input name="password-text" id="password-input">
-					<br/>
-					<label for="password-confirm-input">Confirm password: </label>
-					<input name="password-confirm-text" id="password-confirm-input">
-					<br/>
-					<button onclick="onclick_addUser();" type="button">Sign up</button>
-				</form>
-				<a href="#p_1">Back to log in page</a>
-			</div>
-		</div>
-	</div>
+        <div data-role="content" class="ui-content">
+            <div id="register-form">
+                <form>
+                    <label for="name-input">Full name:</label>
+                    <input name="name-text" id="name-input">
+                    <br/>
+                    <label for="email-input">Email:</label>
+                    <input name="email-text" id="email-input">
+                    <br/>
+                    <label for="login-input">Login:</label>
+                    <input name="login-text" id="login-input">
+                    <br/>
+                    <label for="password-input">Password:</label>
+                    <input type="password" name="password-text" id="password-input">
+                    <br/>
+                    <label for="password-confirm-input">Confirm password:</label>
+                    <input type="password" name="password-confirm-text" id="password-confirm-input">
+                    <br/>
+                    <button onclick="onclick_addUser();" type="button">Sign up</button>
+                </form>
+                <a href="#p1">Back to log in page</a>
+            </div>
+        </div>
+    </div>
 
-	<div class="ui-page" id="p_3">
-		<div class="ui-header">
-			<h1>Register</h1>
-		</div>
+    <div data-role="page" data-title="Page 3" data-url="p3" class="ui-page" id="p3">
+        <div data-role="header" class="ui-header">
+            <h1>Welcome to personal page</h1>
+        </div>
 
-		<div class="ui-content">
+        <div data-role="content" class="ui-content">
+            <div data-role="tabs" id="tabs">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#p3-t1" data-ajax="false">Personal Settings</a>
+                        </li>
+                        <li><a href="#p3-t2" data-ajax="false">Confident</a>
+                        </li>
+                        <li><a href="#p3-t3" data-ajax="false">Health statistics</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="p3-t1" class="ui-body-d ui-content">
+                    <form>
+                        <label for="ps-name-input">Full name:</label>
+                        <input name="name-text" id="ps-name-input">
+                        <br/>
+                        <label for="ps-email-input">Email:</label>
+                        <input name="email-text" id="ps-email-input">
+                        <br/>
+                        <label for="ps-login-input">Login:</label>
+                        <input name="login-text" id="ps-login-input">
+                        <br/>
+                        <label for="ps-password-input">Password:</label>
+                        <input type="password" name="password-text" id="ps-password-input">
+                        <br/>
+                        <label for="ps-geolocEnabled-select">Enable geolocation:</label>
+                        <select name="geolocEnabled-select" id="ps-geolocEnabled-select" data-role="slider">
+                            <option value="off">No</option>
+                            <option value="on">Yes</option>
+                        </select>
+                        <label for="ps-medStat-select">Enable medical statistics:</label>
+                        <select name="medStat-select" id="ps-medStat-select" data-role="slider">
+                            <option value="off">No</option>
+                            <option value="on">Yes</option>
+                        </select>
+                        <button id="ps-saveSettings-button" onclick="onclickSaveSettings();" type="button">Save settings</button>
+                    </form>
+                </div>
+                <div id="p3-t2">
+                    <form>
+                        <label for="confident-search">Search confident: </label>
+                        <input type="search" name="password" id="confident-search" value="" placeholder="Input confident email or name">
+                        <br/>
+                        <label for="confident-name-input">Confident name:</label>
+                        <input name="confidentName" id="confident-name-input">
+                        <label for="confident-email-input">Confident email:</label>
+                        <input name="confidentEmail" id="confident-email-input">
+                        <button id="addConfident-button" onclick="onclickAddConfident();" type="button">Add confident</button>
+                    </form>
+                    <br/>
+                    <div class="confident-list">
+                    	
+                    </div>
+                </div>
+                <div id="p3-t3">
 
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<script type="text/javascript" src="./lib/tau/mobile/js/tau.js"></script>
-	<script src="./js/main.js"></script>
-	<script src="lib/jquery.js"></script>
-	<script src="js/restapi.js"></script>
-	<script src="js/ui-controller.js"></script>
-	<script src="js/security.js"></script>
+
+    <!-- 	<script type="text/javascript" src="./lib/tau/mobile/js/tau.js"></script> -->
+    <script src="./js/main.js"></script>
+
+    <script src="js/restapi.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/security.js"></script>
 </body>
+
 </html>

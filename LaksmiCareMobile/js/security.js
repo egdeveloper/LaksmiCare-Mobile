@@ -1,3 +1,6 @@
+const TOKENDB = "token-db";
+const TOKENSTORAGE = "token-storage";
+
 function generateGUID(){
     var d = new Date().getTime();
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -7,4 +10,11 @@ function generateGUID(){
     });
 }
 
+
+function getOrGenToken(){
+	var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+	var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+	var req = indexedDB.open(TOKENDB, 1);
+	
+}
 
