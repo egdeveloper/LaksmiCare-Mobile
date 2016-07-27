@@ -1,76 +1,66 @@
 var user;
 const HOST = "http://146.185.143.85:8080/user-service";
+//const HOST = "http://localhost:8080";
 
-
-function authUser(login, password){
-	/*$.ajax({
-		url: HOST + "/user?login=" + login + "&password=" + password,
-		method: "GET",
-		headers: {
-			"Content-Type" : "application/json"
-		},
-		dataType: "json",
-		success: function(data){
-			console.log(data);
-			alert("AUTH OK!");
-		}
-	}).fail(function(){
-		console.log("Auth failed!");
-	});*/
-	console.log(login);
+function authUser(login, password, onSuccess, onFail){
+	console.log("=> authUser() started");
+	console.log("| Login = " + login);
+	console.log("| Password = " + password);
 	$.ajax({
 	    url: HOST + "/user?login=" + login + "&password=" + password,
 	    type: "GET",
 	    headers: {
 	    	"Content-Type" : "application/json"
 	    },
-	    error: function () {},
 	    dataType: 'json',
-	    success : function (response) {
-	        alert(response.login);
-	    }
-	});
-}
-    
-function getConfident(){
-	$.ajax({
-		url: HOST + "/user/" + user.id,
-		method: "GET"
-	}).done(function(data){
-		return data;
-	}).fail(function(){
-		
-	});
+	    success : onSuccess
+	}).fail(onFail);
 }
 
-function sendAlarm(alarmSOS){
+function createUserAccount(user, onSuccess, onFail){
+	console.log("=> createUserAccount() started");
+	console.log("| User = " + user);
+	$.ajax({
+		url: HOST + "/user",
+		type: "POST",
+		headers: {
+			"Content-Type" : "application/json"
+		},
+		dataType: "json",
+		data: user,
+		success: onSuccess
+	}).fail(onFail);
+}
+
+function getConfident(user, onSuccess, onFail){
+	$.ajax({
+		url: HOST + "/user/" + user.id + "/confident-list",
+		method: "GET",
+		dataType: "json",
+		success: onSuccess
+	}).fail(onFail);
+}
+
+function sendAlarm(user, alarmSOS, onSuccess, onFail){
 	$.ajax({
 		url: HOST + "/user/" + user.id + "/health/alarm",
+		method: "POST",
 		data: alarmSOS,
-		method: "POST"
-	}).done(function(data){
-		console.log(data);
-	}).fail(function(){
-		
-	});
+		headers: {
+			"Content-Type" : "application/json"
+		},
+		success: onSuccess
+	}).fail(onFail);
 }
 
-function sendHeartStat(){
+function sendHeartStat(user, heartStat, onSuccess, onFail){
 	$.ajax({
 		url: HOST + "/user/" + user.id + "/health/stat",
-		data: alarmSOS,
-		method: "POST"
-	}).done(function(data){
-		console.log(data);
-	}).fail(function(){
-		
-	});
-}
-
-function onAuthSuccess(){
-	
-}
-
-function onAuthFail(){
-	
+		method: "POST",
+		data: heartStat,
+		headers: {
+			"Content-Type" : "application/json"
+		},
+		success: onSuccess
+	}).fail(onFail);
 }
