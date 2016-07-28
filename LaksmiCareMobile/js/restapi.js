@@ -94,11 +94,8 @@ function addConfident(user, confident, onSuccess, onFail){
 
 function getConfident(user, onSuccess, onFail){
 	$.ajax({
-		url: HOST + "/user/" + user.id + "/confident-list",
+		url: HOST + "/user/" + user.id + "/confident",
 		method: "GET",
-		headers: {
-			"Content-Type" : "application/json"
-		},
 		dataType: "json",
 		success: onSuccess
 	}).fail(onFail);
@@ -124,6 +121,20 @@ function sendHeartStat(user, heartStat, onSuccess, onFail){
 		headers: {
 			"Content-Type" : "application/json"
 		},
+		success: onSuccess
+	}).fail(onFail);
+}
+
+function registerDevice(user, deviceId, onSuccess, onFail){
+	console.log("=> registerDevice() started");
+	console.log("| User =" + user);
+	$.ajax({
+		url: HOST + "/user/" + user.id + "/device",
+		type: "POST",
+		headers: {
+			"Content-Type" : "application/json"
+		},
+		data: deviceId,
 		success: onSuccess
 	}).fail(onFail);
 }

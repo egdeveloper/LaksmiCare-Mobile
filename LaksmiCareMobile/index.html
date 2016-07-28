@@ -81,11 +81,14 @@
             <div data-role="tabs" id="tabs">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#p3-t1" data-ajax="false">Personal Settings</a>
+                        <li><a href="#p3-t1" data-ajax="false" onclick="">Personal Settings</a>
                         </li>
                         <li><a href="#p3-t2" data-ajax="false">Confident</a>
                         </li>
                         <li><a href="#p3-t3" data-ajax="false">Health statistics</a>
+                        </li>
+                        <li>
+                        <a href="#p3-t4" data-ajax="false">Devices</a>
                         </li>
                     </ul>
                 </div>
@@ -113,10 +116,14 @@
                             <option value="off">No</option>
                             <option value="on">Yes</option>
                         </select>
+                        <label for="ps-normalRateMin-input">Normal rate minimum (bpm):</label>
+                        <input name="ps-normalRateMin-input" id="ps-normalRateMin-input">
+                        <label for="ps-normalRateMax-input">Normal rate maximum (bpm):</label>
+                        <input name="ps-normalRateMax-input" id="ps-normalRateMax-input">
                         <button id="ps-saveSettings-button" onclick="onclickSaveSettings();" type="button">Save settings</button>
                     </form>
                 </div>
-                <div id="p3-t2">
+                <div id="p3-t2" class="ui-body-d ui-content">
                     <form>
                         <label for="confident-search">Search confident: </label>
                         <input type="search" name="password" id="confident-search" value="" placeholder="Input confident email or name">
@@ -128,12 +135,26 @@
                         <button id="addConfident-button" onclick="onclickAddConfident();" type="button">Add confident</button>
                     </form>
                     <br/>
+                    <button class="ui-btn" onclick="onclickGetConfident();">Get confident</button>
                     <div id="confident-list">
                     	
                     </div>
                 </div>
-                <div id="p3-t3">
+                <div id="p3-t3" class="ui-body-d ui-content">
 
+                </div>
+                <div id="p3-t4" class="ui-body-d ui-content">
+                	<div id="p3-t4" class="ui-body-d ui-content">
+                	<form>
+                        <label for="device-id-input">Device guid:</label>
+                        <input name="confidentName" id="device-id-input">
+                        <button id="addDevice-button" onclick="onclickRegisterDevice();" type="button">Add device</button>
+                    </form>
+                    <br/>
+                    <button class="ui-btn" onclick="onclickGetDevices();">Get devices</button>
+                    <div id="devices-list">
+                    	
+                    </div>
                 </div>
             </div>
         </div>
